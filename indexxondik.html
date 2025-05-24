@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Портфолио Хондика</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    header {
+      background-color: rgba(43, 119, 229, 0.8);
+      color: white;
+      padding: 20px 0;
+      border-radius: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    section {
+      margin-top: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h2 {
+      color: #2b77e5;
+      margin-bottom: 20px;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2b77e5;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background-color: #215ec7;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 280px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 5px;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .project-title {
+      font-size: 20px;
+      margin: 10px 0 5px;
+      color: #2b77e5;
+    }
+
+    .project-description {
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Привет, я Хондик!</h1>
+  </header>
+
+  <section>
+    <h2>Обо мне</h2>
+    <p>Я начинающий веб-разработчик из Узбекистана. Создаю сайты, учусь каждый день и готов к реальным проектам.</p>
+  </section>
+
+  <section>
+    <h2>Игра "Угадай число"</h2>
+    <p>Угадай число от 1 до 100 за 6 попыток:</p>
+    <input type="number" id="guessInput" placeholder="Введи число" min="1" max="100" />
+    <button onclick="checkGuess()">Проверить</button>
+    <p id="result"></p>
+    <script>
+      const answer = Math.floor(Math.random() * 100) + 1;
+      let attempts = 6;
+
+      function checkGuess() {
+        const guess = Number(document.getElementById('guessInput').value);
+        const result = document.getElementById('result');
+
+        if (!guess || guess < 1 || guess > 100) {
+          result.textContent = 'Пожалуйста, введи число от 1 до 100.';
+          return;
+        }
+
+        attempts--;
+
+        if (guess === answer) {
+          result.textContent = 'Поздравляю! Ты угадал число ' + answer + '!';
+          document.getElementById('guessInput').disabled = true;
+          return;
+        } else if (guess < answer) {
+          result.textContent = 'Больше. Осталось попыток: ' + attempts;
+        } else {
+          result.textContent = 'Меньше. Осталось попыток: ' + attempts;
+        }
+
+        if (attempts === 0) {
+          result.textContent = 'Ты проиграл. Было загадано число: ' + answer;
+          document.getElementById('guessInput').disabled = true;
+        }
+      }
+    </script>
+  </section>
+
+  <section>
+    <h2>Контакты</h2>
+    <p>Email: <a href="mailto:tojithegoat01@gmail.com">tojithegoat01@gmail.com</a></p>
+    <p>Телефон: +998 90 236 99 90</p>
+    <p>Телеграм: <a href="https://t.me/liilis02">@liilis02</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Хондик. Все права защищены.
+  </footer>
+</body>
+</html>
